@@ -1,0 +1,12 @@
+{
+    "integer": "int",
+    "bigInteger": "int",
+    "character varying": "string",
+    "character": "string",
+    "timestamp with time zone": "timestamp",
+    "timestamp without time zone": "timestamp",
+    "date": "date",
+    "boolean": "boolean",
+    "double precision": "double",
+    "real": "float"
+}

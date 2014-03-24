@@ -7,7 +7,8 @@
     "test": "test"
   },
   "dependencies": {
-    "q": "~1.0.0"
+    "q": "~1.0.0",
+    "heinzelmannchen-fs": "git://github.com/heinzelmannchen/heinzelmannchen-fs.git#master"
   },
   "devDependencies": {
     "mock-fs": "~2.2.0",
