@@ -1,4 +1,4 @@
-﻿var heinzelDatatypes = require('../heinzel-datatypes'),
+﻿var heinzelDatatypes = require('../index'),
     dataTypes = require('../lib/datatypes');
 
 require('mocha-as-promised')();
