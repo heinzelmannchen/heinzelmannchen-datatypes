@@ -26,6 +26,10 @@ me.map = function(dataType, sourceFormat, destinationFormat) {
     return q.promise;
 };
 
+me.getTypes = function(){
+    return dataTypes;
+};
+
 function getMappingFilePath(sourceFormat, destinationFormat){
     var q = Q.defer(),
         mappingFile;
