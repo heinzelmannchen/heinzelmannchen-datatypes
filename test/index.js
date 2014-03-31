@@ -6,11 +6,11 @@ require('mocha-as-promised')();
 describe('Datatypes', function() {
     describe('#map', function() {
         it('should map postgres integer to heinzel integer', function() {
-            return heinzelDatatypes.map(dataTypes.pg.Integer, dataTypes.pg, dataTypes.heinzel).should.become('int');
+            return heinzelDatatypes.map(dataTypes.pg.Integer, dataTypes.pg.System, dataTypes.heinzel.System).should.become('int');
         });
 
         it('should map postgres double prescision to heinzel double', function() {
-            return heinzelDatatypes.map(dataTypes.pg['double precision'], dataTypes.pg, dataTypes.heinzel).should.become('double');
+            return heinzelDatatypes.map(dataTypes.pg['double precision'], dataTypes.pg.System, dataTypes.heinzel.System).should.become('double');
         });
 
         it('should fail if mapping file doesn\'t exist', function() {

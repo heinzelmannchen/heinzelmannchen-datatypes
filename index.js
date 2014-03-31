@@ -34,7 +34,7 @@ function getMappingFilePath(sourceFormat, destinationFormat){
     var q = Q.defer(),
         mappingFile;
 
-    mappingFile = _.findWhere(mappingFiles, {from: sourceFormat.System, to: destinationFormat.System});
+    mappingFile = _.findWhere(mappingFiles, {from: sourceFormat, to: destinationFormat});
 
     if (mappingFile === undefined) {
         q.reject('no mapping file defined');
