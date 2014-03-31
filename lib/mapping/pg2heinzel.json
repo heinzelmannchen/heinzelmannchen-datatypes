@@ -3,6 +3,7 @@
     "bigInteger": "int",
     "character varying": "string",
     "character": "string",
+    "text": "string",
     "timestamp with time zone": "timestamp",
     "timestamp without time zone": "timestamp",
     "date": "date",

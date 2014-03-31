@@ -18,7 +18,12 @@ me.map = function(dataType, sourceFormat, destinationFormat) {
         })
         .then(function (file){
             mapper = JSON.parse(file);
-            q.resolve(mapper[dataType]);
+            destinationType = mapper[dataType];
+            if (mapper[dataType] !== undefined){
+                q.resolve(destinationType);
+            } else {
+                q.reject('type ' + dataType + 'not defined');
+            }
         })
         .catch(function (error){
             q.reject(error);
