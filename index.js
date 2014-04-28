@@ -3,8 +3,9 @@ var Q = require('q'),
     path = require('path'),
     fsUtil = require('heinzelmannchen-fs'),
     dataTypes = require('./lib/datatypes'),
-    mappingFiles = [{ from: 'pg', to: 'heinzel', file: path.join(__dirname, 'lib/mapping/pg2heinzel.json')},
-                    { from: 'mysql', to: 'heinzel', file: path.join(__dirname, 'lib/mapping/mysql2heinzel.json')}],
+    dataTypeProvider = require('./lib/datatypesProvider'),
+    mappingFiles = [{ from: dataTypeProvider.pg, to: dataTypeProvider.heinzel, file: path.join(__dirname, 'lib/mapping/pg2heinzel.json') },
+                    { from: dataTypeProvider.mysql, to: dataTypeProvider.heinzel, file: path.join(__dirname, 'lib/mapping/mysql2heinzel.json') }],
     me = module.exports;
 
 me.createMapper = function (sourceFormat, destinationFormat) {
