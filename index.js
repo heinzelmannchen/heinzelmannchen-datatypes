@@ -7,28 +7,30 @@ var Q = require('q'),
                     { from: 'mysql', to: 'heinzel', file: path.join(__dirname, 'lib/mapping/mysql2heinzel.json')}],
     me = module.exports;
 
-me.map = function(dataType, sourceFormat, destinationFormat) {
-    var q = Q.defer(),
-        mapper,
-        destinationType;
+me.createMapper = function (sourceFormat, destinationFormat) {
+    return function map(dataType) {
+        var q = Q.defer(),
+            mapper,
+            destinationType;
 
-    getMappingFilePath(sourceFormat, destinationFormat)
-        .then(function (path){
-            return fsUtil.readFileOrReturnData(path);
-        })
-        .then(function (file){
-            mapper = JSON.parse(file);
-            destinationType = mapper[dataType];
-            if (mapper[dataType] !== undefined){
-                q.resolve(destinationType);
-            } else {
-                q.reject('type ' + dataType + 'not defined');
-            }
-        })
-        .catch(function (error){
-            q.reject(error);
-        });
-    return q.promise;
+        getMappingFilePath(sourceFormat, destinationFormat)
+            .then(function (path) {
+                return fsUtil.readFileOrReturnData(path);
+            })
+            .then(function (file) {
+                mapper = JSON.parse(file);
+                destinationType = mapper[dataType];
+                if (mapper[dataType] !== undefined) {
+                    q.resolve(destinationType);
+                } else {
+                    q.reject(new Error('type ' + dataType + 'not defined'));
+                }
+            })
+            .catch(function (error) {
+                q.reject(error);
+            });
+        return q.promise;
+    };
 };
 
 me.getTypes = function(){
@@ -42,7 +44,7 @@ function getMappingFilePath(sourceFormat, destinationFormat){
     mappingFile = _.findWhere(mappingFiles, {from: sourceFormat, to: destinationFormat});
 
     if (mappingFile === undefined) {
-        q.reject('no mapping file defined');
+        q.reject(new Error('no mapping file defined for source ' + sourceFormat + ' and destination ' + destinationFormat));
     } else {
         q.resolve(mappingFile.file);
     }
