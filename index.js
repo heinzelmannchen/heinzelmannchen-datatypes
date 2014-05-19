@@ -24,7 +24,7 @@ me.createMapper = function (sourceFormat, destinationFormat) {
                 if (mapper[dataType] !== undefined) {
                     q.resolve(destinationType);
                 } else {
-                    q.reject(new Error('type ' + dataType + 'not defined'));
+                    q.resolve(dataType);
                 }
             })
             .catch(function (error) {
