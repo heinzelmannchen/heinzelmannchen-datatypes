@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "q": "~1.0.0",
-    "heinzelmannchen-fs": "~1.0.0"
+    "heinzelmannchen-fs": "~1.0.1"
   },
   "devDependencies": {
     "mock-fs": "~2.2.0",
